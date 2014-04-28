@@ -11,7 +11,6 @@
 # Arezqui Belaid <info@star2billing.com>
 #
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
@@ -32,7 +31,7 @@ class AudioFile(Model):
     audio_file = AudioField(upload_to='upload/audiofiles', blank=True,
                             ext_whitelist=(".mp3", ".wav", ".ogg"),
                             verbose_name=_("audio file"))
-    user = models.ForeignKey(User, verbose_name=_('user'),
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'),
                              help_text=_("select user"))
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
